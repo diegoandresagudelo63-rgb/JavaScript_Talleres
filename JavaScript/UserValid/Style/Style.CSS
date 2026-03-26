@@ -1,0 +1,22 @@
+/* Botón cuando no se puede hacer clic */
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Estilo base para todos los errores */
+.error-message {
+    color: #e74c3c;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Clase para ESCONDER el error por completo */
+.hidden {
+    display: none;
+}
+
+/* Clase para MOSTRAR el error */
+.visible {
+    display: block;
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h2>Reemplazar vocales tildadas y eliminar @</h2>
+
+    <input type="text" id="texto" placeholder="Escribe aqui">
+    <button onclick="reemplazarVocales()">Proceso</button>
+    <br><br>
+    <input type="text" placeholder="Resultado" id="resultadoInput"> 
+
+
+    <script>
+        function reemplazarVocales() {
+            let texto = document.getElementById("texto").value;
+            //Se reemplazan las vocales tildadas por las sin tilde
+            let resultado = texto.replace(/á/g, "a")    
+                                 .replace(/é/g, "e")
+                                 .replace(/í/g, "i")
+                                 .replace(/ó/g, "o")
+                                 .replace(/ú/g, "u")
+            document.getElementById("resultadoInput").value = resultado;
+            // Reemplaza las vocales mayusculas tildadas por las sin tilde
+            let resultadoMayusculas = texto.replace(/Á/g, "A")
+                                 .replace(/É/g, "E")
+                                 .replace(/Í/g, "I")
+                                 .replace(/Ó/g, "O")
+                                 .replace(/Ú/g, "U");
+            // Eliminar el símbolo @
+            resultado = resultado.replace(/@/g, "");
+            document.getElementById("resultadoInput").value = resultado;
+        }
+    </script>
+
+</body>
+</html>

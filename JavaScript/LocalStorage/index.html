@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>CRUD de Estudiantes</title>
+  <style>
+    /* ── Fuentes ── */
+    @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap');
+
+    /* ── Variables de color ── */
+    :root {
+      --bg:      #f0f4ff;
+      --card:    #ffffff;
+      --primary: #3b5bdb;
+      --accent:  #f03e3e;
+      --text:    #1e2a4a;
+      --muted:   #868e96;
+      --border:  #dde3f0;
+      --green:   #2f9e44;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Sora', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: var(--primary);
+    }
+
+    /* ── Tarjeta del formulario ── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      max-width: 500px;
+      margin: 0 auto 2rem;
+      box-shadow: 0 4px 16px rgba(59,91,219,.08);
+    }
+
+    .card h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    label {
+      display: block;
+      font-size: .85rem;
+      font-weight: 600;
+      margin-bottom: .3rem;
+      color: var(--text);
+    }
+
+    input {
+      width: 100%;
+      padding: .6rem .8rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: .95rem;
+      margin-bottom: 1rem;
+      outline: none;
+      transition: border-color .2s;
+    }
+
+    input:focus { border-color: var(--primary); }
+
+    .btn-row { display: flex; gap: .75rem; }
+
+    button {
+      flex: 1;
+      padding: .65rem;
+      border: none;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: .9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity .15s;
+    }
+    button:hover { opacity: .85; }
+
+    #btnGuardar  { background: var(--primary); color: #fff; }
+    #btnCancelar { background: var(--border);  color: var(--text); display: none; }
+
+    /* ── Tabla ── */
+    .tabla-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      overflow-x: auto;
+    }
+
+    .tabla-wrap h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-bottom: .75rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--card);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(59,91,219,.08);
+    }
+
+    thead { background: var(--primary); color: #fff; }
+
+    th, td {
+      padding: .75rem 1rem;
+      text-align: left;
+      font-size: .9rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover { background: #f5f7ff; }
+
+    .btn-edit {
+      background: var(--green);
+      color: #fff;
+      padding: .35rem .75rem;
+      border-radius: 6px;
+      font-size: .8rem;
+      margin-right: .4rem;
+    }
+
+    .btn-delete {
+      background: var(--accent);
+      color: #fff;
+      padding: .35rem .75rem;
+      border-radius: 6px;
+      font-size: .8rem;
+    }
+
+    .empty-msg {
+      text-align: center;
+      color: var(--muted);
+      padding: 1.5rem;
+      font-size: .9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📚 CRUD de Estudiantes</h1>
+
+  <!-- ══ FORMULARIO ══ -->
+  <div class="card">
+    <h2>📝 Formulario</h2>
+
+    <!-- Campo oculto para guardar el id al editar -->
+    <input type="hidden" id="estudianteId">
+
+    <label for="nombre">Nombre</label>
+    <input type="text" id="nombre" placeholder="Ej: Carlos López">
+
+    <label for="correo">Correo</label>
+    <input type="email" id="correo" placeholder="Ej: carlos@email.com">
+
+    <label for="fechaNacimiento">Fecha de nacimiento</label>
+    <input type="date" id="fechaNacimiento">
+
+    <div class="btn-row">
+      <button id="btnGuardar"  onclick="guardarEstudiante()">💾 Guardar</button>
+      <button id="btnCancelar" onclick="cancelarEdicion()">✖ Cancelar</button>
+    </div>
+  </div>
+
+  <!-- ══ TABLA ══ -->
+  <div class="tabla-wrap">
+    <h2>📋 Lista de estudiantes</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Correo</th>
+          <th>Fecha Nacimiento</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="tablaBody">
+        <!-- Las filas se generan con JavaScript -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ══ SCRIPT ══ -->
+  <script src="script.js"></script>
+
+</body>
+</html>

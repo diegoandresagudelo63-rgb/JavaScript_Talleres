@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!DOCTYPE html>
+<html>
+<head>
+    <title>Contador de Números</title>
+</head>
+<body>
+
+    <h2>Resultados en consola (F12)</h2>
+
+    <script>
+        
+        let numero;
+        let positivos = 0;
+        let negativos = 0;
+        let sumaPositivos = 0;
+        let maximo = null;
+        let minimo = null;
+
+        while (numero != 99) {
+            numero = parseInt(prompt("Ingrese un número (99 para salir):"));
+
+            if (numero == 99) {
+                break;
+            }
+
+            if (numero > 0) {
+                positivos++;
+                sumaPositivos += numero;
+            } else if (numero < 0) {
+                negativos++;
+            }
+
+            if (maximo === null || numero > maximo) {
+                maximo = numero;
+            }
+
+            if (minimo === null || numero < minimo) {
+                minimo = numero;
+            }
+        }
+
+        let promedio = positivos > 0 ? sumaPositivos / positivos : 0;
+
+        document.write("Cantidad de positivos: " + positivos + "<br>");
+        document.write("Cantidad de negativos: " + negativos + "<br>");
+        document.write("Suma de positivos: " + sumaPositivos + "<br>");
+        document.write("Promedio de positivos: " + promedio + "<br>");
+        document.write("Valor máximo: " + maximo + "<br>");
+        document.write("Valor mínimo: " + minimo + "<br>");
+    </script>    
+</body>
+</html>
